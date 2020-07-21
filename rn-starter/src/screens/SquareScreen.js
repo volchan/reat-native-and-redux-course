@@ -8,14 +8,20 @@ const COLOR_INCREMENT = 5;
 const reducer = (state, action) => {
   // state === { red: Number, green: Number, blue: Number }
   // action == { colorToChange: 'red' || 'green' || 'blue', amount: +5 || -5 }
-
+  const { red, green, blue } = state;
   switch (action.colorToChange) {
     case "red":
-      return { ...state, red: state.red + action.amount };
+      return red + action.amount < 0 || red + action.amount > 255
+        ? state
+        : { ...state, red: red + action.amount };
     case "green":
-      return { ...state, green: state.green + action.amount };
+      return green + action.amount < 0 || green + action.amount > 255
+        ? state
+        : { ...state, green: green + action.amount };
     case "blue":
-      return { ...state, blue: state.blue + action.amount };
+      return blue + action.amount < 0 || blue + action.amount > 255
+        ? state
+        : { ...state, blue: blue + action.amount };
     default:
       return state;
   }
