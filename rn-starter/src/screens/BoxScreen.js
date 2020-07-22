@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   viewStyle: {
     borderWidth: 3,
     borderColor: "black",
+    justifyContent: "flex-start",
     flexDirection: "row",
     height: 200,
   },
