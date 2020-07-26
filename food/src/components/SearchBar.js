@@ -1,9 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 const SearchBar = () => {
   return (
     <View style={styles.background}>
+      <FontAwesome5 name="search" size={24} color="black" />
       <Text>SearchBar</Text>
     </View>
   );
