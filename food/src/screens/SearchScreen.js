@@ -9,10 +9,6 @@ const SearchScreen = () => {
   const [results, setResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    searchApi('');
-  }, []);
-
   const searchApi = async (searchTerm) => {
     try {
       const res = await yelp.get("/search", {
@@ -28,6 +24,10 @@ const SearchScreen = () => {
       setErrorMessage("Something went wrong.");
     }
   };
+
+  useEffect(() => {
+    searchApi("");
+  }, []);
 
   return (
     <View>
