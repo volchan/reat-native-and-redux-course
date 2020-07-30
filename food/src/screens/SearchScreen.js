@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-import yelp from "../api/yelp";
 import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
+import ResultsList from "../components/ResultsList";
 
 const SearchScreen = () => {
   const [term, setTerm] = useState("");
@@ -14,7 +14,12 @@ const SearchScreen = () => {
       <SearchBar term={term} onTermChange={setTerm} onTermSubmit={searchApi} />
       {errorMessage ? <Text>{errorMessage}</Text> : null}
       {results.length > 0 ? (
-        <Text>We have found {results.length} results.</Text>
+        <View>
+          <Text>We have found {results.length} results.</Text>
+          <ResultsList title="Cost Effective" />
+          <ResultsList title="Bit Pricier" />
+          <ResultsList title="Big Spender" />
+        </View>
       ) : null}
     </View>
   );
