@@ -7,8 +7,6 @@ const blogReducer = (state, action) => {
   switch (type) {
     case "get_blogposts":
       return payload;
-    case "add_blogpost":
-      return [...state, payload];
     case "edit_blogpost":
       return state.map((blogPost) => {
         return blogPost.id === payload.id ? action.payload : blogPost;
@@ -31,7 +29,6 @@ const addBlogPost = (_dispatch) => {
   return async (title, content, callback) => {
     const res = await jsonServer.post("/blogposts", { title, content });
     if (res.data) {
-      // dispatch({ type: "add_blogpost", payload: res.data });
       if (callback) callback();
     }
   };
@@ -46,7 +43,9 @@ const editBlogPost = (dispatch) => {
 };
 
 const deleteBlogPost = (dispatch) => {
-  return (id) => dispatch({ type: "delete_blogpost", payload: id });
+  return async (id) => {
+    await jsonServer.delete(`/blogposts/${id}`);
+    dispatch({ type: "delete_blogpost", payload: id })};
 };
 
 export const { Context, Provider } = createDataContext(

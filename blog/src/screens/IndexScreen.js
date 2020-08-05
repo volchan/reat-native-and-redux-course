@@ -14,7 +14,6 @@ const IndexScreen = ({ navigation }) => {
   const { state, getBlogPosts, deleteBlogPost } = useContext(Context);
 
   useEffect(() => {
-    getBlogPosts();
     const listener = navigation.addListener("didFocus", () => getBlogPosts());
     return () => listener.remove();
   }, []);
