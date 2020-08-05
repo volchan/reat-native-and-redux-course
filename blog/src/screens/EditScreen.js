@@ -4,7 +4,7 @@ import { Context } from "../context/BlogContext";
 import BlogPostFrom from "../components/BlogPostForm";
 
 const EditScreen = ({ navigation }) => {
-  const { state } = useContext(Context);
+  const { state, editBlogPost } = useContext(Context);
 
   const blogPostId = navigation.getParam("id");
   const { id, title, content } = state.find(
@@ -19,7 +19,7 @@ const EditScreen = ({ navigation }) => {
         content: "Edit Content:",
         button: "EDIT BLOG POST",
       }}
-      onSubmit={(title, content) => console.log(title, content)}
+      onSubmit={(id, title, content) => editBlogPost(id, title, content)}
     />
   );
 };

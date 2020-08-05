@@ -1,13 +1,9 @@
 import React, { useContext, useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 
-import { Context } from "../context/BlogContext";
-
 const BlogPostFrom = ({ onSubmit, initialValues, labels }) => {
   const [title, setTitle] = useState(initialValues.title);
   const [content, setContent] = useState(initialValues.content);
-
-  const { addBlogPost } = useContext(Context);
 
   return (
     <View style={styles.container}>

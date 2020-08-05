@@ -29,12 +29,19 @@ const addBlogPost = (dispatch) => {
   };
 };
 
+const editBlogPost = (dispatch) => {
+  return (id, title, content, callback) => {
+    dispatch({ type: "add_blogpost", payload: { id, title, content } });
+    callback();
+  };
+};
+
 const deleteBlogPost = (dispatch) => {
   return (id) => dispatch({ type: "delete_blogpost", payload: id });
 };
 
 export const { Context, Provider } = createDataContext(
   blogReducer,
-  { addBlogPost, deleteBlogPost },
+  { addBlogPost, editBlogPost, deleteBlogPost },
   [{ id: 123456, title: "TEST POST", content: "TEST CONTENT" }]
 );
