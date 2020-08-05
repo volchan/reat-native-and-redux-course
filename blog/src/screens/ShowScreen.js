@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 import { Context } from "../context/BlogContext";
 
@@ -12,10 +13,29 @@ const ShowScreen = ({ navigation }) => {
   return (
     <View>
       <Text>{blogPost.title}</Text>
+      <Text>{blogPost.content}</Text>
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+ShowScreen.navigationOptions = ({ navigation }) => {
+  return {
+    headerRight: () => (
+      <TouchableOpacity onPress={() => navigation.navigate("Edit")}>
+        <FontAwesome5 name="pencil-alt" style={styles.editIcon} />
+      </TouchableOpacity>
+    ),
+  };
+};
+
+
+
+const styles = StyleSheet.create({
+  editIcon: {
+    fontSize: 20,
+    color: "black",
+    marginRight: 15,
+  },
+});
 
 export default ShowScreen;
