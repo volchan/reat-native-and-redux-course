@@ -19,7 +19,11 @@ const EditScreen = ({ navigation }) => {
         content: "Edit Content:",
         button: "EDIT BLOG POST",
       }}
-      onSubmit={(id, title, content) => editBlogPost(id, title, content)}
+      onSubmit={(id, title, content) =>
+        editBlogPost(id, title, content, () => {
+          navigation.navigate("Show", { id });
+        })
+      }
     />
   );
 };

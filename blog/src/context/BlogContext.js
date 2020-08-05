@@ -5,8 +5,6 @@ const blogReducer = (state, action) => {
 
   switch (type) {
     case "add_blogpost":
-      const { title, content } = payload;
-
       return [
         ...state,
         {
@@ -15,6 +13,10 @@ const blogReducer = (state, action) => {
           content: payload.content,
         },
       ];
+    case "edit_blogpost":
+      return state.map((blogPost) => {
+        return blogPost.id === payload.id ? action.payload : blogPost;
+      });
     case "delete_blogpost":
       return state.filter((blogPost) => blogPost.id !== payload);
     default:
