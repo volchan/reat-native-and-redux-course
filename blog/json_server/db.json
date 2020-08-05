@@ -1,5 +1,14 @@
 {
   "blogposts": [
-    { "id": 12334, "title": "API POST", "content": "API POST CONTENT" }
+    {
+      "title": "API POST",
+      "content": "API POST CONTENT",
+      "id": 1
+    },
+    {
+      "title": "Kdbdls",
+      "content": "Kssbsodjs",
+      "id": 2
+    }
   ]
 }

@@ -1,5 +1,6 @@
 import createDataContext from "./createDataContext";
 import jsonServer from "../api/jsonServer";
+import Axios from "axios";
 
 const blogReducer = (state, action) => {
   const { type, payload } = action;
@@ -10,11 +11,7 @@ const blogReducer = (state, action) => {
     case "add_blogpost":
       return [
         ...state,
-        {
-          id: Math.floor(Math.random() * 9999),
-          title: payload.title,
-          content: payload.content,
-        },
+        payload,
       ];
     case "edit_blogpost":
       return state.map((blogPost) => {
@@ -35,9 +32,12 @@ const getBlogPosts = (dispatch) => {
 };
 
 const addBlogPost = (dispatch) => {
-  return (title, content, callback) => {
-    dispatch({ type: "add_blogpost", payload: { title, content } });
-    if (callback) callback();
+  return async (title, content, callback) => {
+    const res = await jsonServer.post("/blogposts", {title, content});
+    if (res.data) {
+      dispatch({ type: "add_blogpost", payload: res.data });
+      if (callback) callback();
+    }
   };
 };
 
