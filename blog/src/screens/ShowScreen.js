@@ -18,17 +18,19 @@ const ShowScreen = ({ navigation }) => {
   );
 };
 
-ShowScreen.navigationOptions = ({ navigation }) => {
+ShowScreen.navigationOptions = ({ navigation: { navigate, getParam } }) => {
   return {
     headerRight: () => (
-      <TouchableOpacity onPress={() => navigation.navigate("Edit")}>
+      <TouchableOpacity
+        onPress={() =>
+          navigate("Edit", { id: getParam("id") })
+        }
+      >
         <FontAwesome5 name="pencil-alt" style={styles.editIcon} />
       </TouchableOpacity>
     ),
   };
 };
-
-
 
 const styles = StyleSheet.create({
   editIcon: {
