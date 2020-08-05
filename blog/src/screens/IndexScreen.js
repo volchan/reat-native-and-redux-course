@@ -11,7 +11,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { Context } from "../context/BlogContext";
 
 const IndexScreen = ({ navigation }) => {
-  const { state, addBlogPost, deleteBlogPost } = useContext(Context);
+  const { state, getBlogPost, deleteBlogPost } = useContext(Context);
 
   return (
     <View>
