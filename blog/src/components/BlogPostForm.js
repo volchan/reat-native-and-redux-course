@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 
 import { Context } from "../context/BlogContext";
 
-const BlogPostFrom = ({ navigation }) => {
+const BlogPostFrom = ({ onSubmit }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -23,14 +23,7 @@ const BlogPostFrom = ({ navigation }) => {
         value={content}
         onChangeText={(text) => setContent(text)}
       />
-      <Button
-        title="Add Blog Post"
-        onPress={() => {
-          addBlogPost(title, content, () => {
-            navigation.navigate("Index");
-          });
-        }}
-      />
+      <Button title="Add Blog Post" onPress={() => onSubmit(title, content)} />
     </View>
   );
 };
