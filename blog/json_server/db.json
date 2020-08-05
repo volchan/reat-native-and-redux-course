@@ -1,14 +1,19 @@
 {
   "blogposts": [
     {
+      "id": 1,
       "title": "API POST",
-      "content": "API POST CONTENT",
-      "id": 1
+      "content": "API POST CONTENT"
     },
     {
       "title": "Kdbdls",
       "content": "Kssbsodjs",
       "id": 2
+    },
+    {
+      "title": "Ppvpsjdoahsozj",
+      "content": "Kdosjsvsmsj",
+      "id": 3
     }
   ]
 }
