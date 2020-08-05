@@ -29,7 +29,7 @@ const IndexScreen = ({ navigation }) => {
               <View style={styles.row}>
                 <Text style={styles.title}>{item.title}</Text>
                 <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
-                  <FontAwesome5 name="trash-alt" style={styles.icon} />
+                  <FontAwesome5 name="trash-alt" style={styles.deleteIcon} />
                 </TouchableOpacity>
               </View>
             </TouchableOpacity>
@@ -38,6 +38,16 @@ const IndexScreen = ({ navigation }) => {
       />
     </View>
   );
+};
+
+IndexScreen.navigationOptions = ({ navigation }) => {
+  return {
+    headerRight: () => (
+      <TouchableOpacity onPress={() => navigation.navigate("Create")}>
+        <FontAwesome5 name="plus" style={styles.addIcon} />
+      </TouchableOpacity>
+    ),
+  };
 };
 
 const styles = StyleSheet.create({
@@ -52,9 +62,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
   },
-  icon: {
-    fontSize: 24,
+  deleteIcon: {
+    fontSize: 20,
     color: "red",
+  },
+  addIcon: {
+    fontSize: 20,
+    color: "black",
+    marginRight: 15,
   },
 });
 
