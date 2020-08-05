@@ -7,7 +7,7 @@ const EditScreen = ({ navigation }) => {
   const { state, editBlogPost } = useContext(Context);
 
   const blogPostId = navigation.getParam("id");
-  const { id, title, content } = state.find(
+  const { title, content } = state.find(
     (blogPost) => blogPost.id === blogPostId
   );
 
@@ -19,9 +19,9 @@ const EditScreen = ({ navigation }) => {
         content: "Edit Content:",
         button: "EDIT BLOG POST",
       }}
-      onSubmit={(id, title, content) =>
-        editBlogPost(id, title, content, () => {
-          navigation.navigate("Show", { id });
+      onSubmit={(title, content) =>
+        editBlogPost(blogPostId, title, content, () => {
+          navigation.navigate("Show", { blogPostId });
         })
       }
     />
