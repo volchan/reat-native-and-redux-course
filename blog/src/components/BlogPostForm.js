@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 
 import { Context } from "../context/BlogContext";
 
-const BlogPostFrom = ({ onSubmit, initialValues }) => {
+const BlogPostFrom = ({ onSubmit, initialValues, labels }) => {
   const [title, setTitle] = useState(initialValues.title);
   const [content, setContent] = useState(initialValues.content);
 
@@ -11,21 +11,25 @@ const BlogPostFrom = ({ onSubmit, initialValues }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Enter Title:</Text>
+      <Text style={styles.label}>{labels.title}</Text>
       <TextInput
         style={styles.input}
         value={title}
         onChangeText={(text) => setTitle(text)}
       />
-      <Text style={styles.label}>Enter Content:</Text>
+      <Text style={styles.label}>{labels.content}</Text>
       <TextInput
         style={styles.input}
         value={content}
         onChangeText={(text) => setContent(text)}
       />
-      <Button title="Add Blog Post" onPress={() => onSubmit(title, content)} />
+      <Button title={labels.button} onPress={() => onSubmit(title, content)} />
     </View>
   );
+};
+
+BlogPostFrom.defaultProps = {
+  initialValues: { title: "", content: "" },
 };
 
 const styles = StyleSheet.create({

@@ -11,6 +11,11 @@ const CreateScreen = ({ navigation }) => {
 
   return (
     <BlogPostForm
+      labels={{
+        title: "Enter Title:",
+        content: "Enter Content:",
+        button: "ADD BLOG POST",
+      }}
       onSubmit={(title, content) => {
         addBlogPost(title, content, () => {
           navigation.navigate("Index");
