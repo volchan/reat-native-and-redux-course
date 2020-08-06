@@ -1,9 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-const env = require("./config/env"); 
+const env = require("./config/env");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
+app.use(authRoutes);
 
 const mongoUri = env.MONGO_DB_URL;
 mongoose.connect(mongoUri, {
