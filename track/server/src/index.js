@@ -1,10 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 const env = require("./config/env");
 const authRoutes = require("./routes/authRoutes");
 
 const app = express();
+app.use(bodyParser.json());
 app.use(authRoutes);
 
 const mongoUri = env.MONGO_DB_URL;
