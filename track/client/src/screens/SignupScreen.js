@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
-import { Text, Input, Button } from "react-native-elements";
+import { Text } from "react-native-elements";
 
 import AuthForm from "../components/AuthForm";
 import Spacer from "../components/spacer";
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   link: {
-    color: "blue",
+    color: "#007bff",
   },
 });
 

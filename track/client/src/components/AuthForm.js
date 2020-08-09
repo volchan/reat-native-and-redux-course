@@ -30,6 +30,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
             solid: true,
             color: "#86939E",
           }}
+          containerStyle={styles.inputContainer}
         />
         <Input
           label="Password"
@@ -45,6 +46,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
             solid: true,
             color: "#86939E",
           }}
+          containerStyle={styles.inputContainer}
         />
 
         {errorMessage ? (
@@ -61,6 +63,9 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
 };
 
 const styles = StyleSheet.create({
+  inputContainer: {
+    paddingHorizontal: 0,
+  },
   errorMessage: {
     textAlign: "center",
     fontSize: 16,
