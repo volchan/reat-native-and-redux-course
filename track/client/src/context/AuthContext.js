@@ -1,3 +1,5 @@
+import AsyncStorage from "@react-native-community/async-storage";
+
 import createDataContext from "./createDataContext";
 import trackerApi from "../api/tracker";
 
@@ -5,6 +7,8 @@ const authReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case "signup":
+      return { token: payload, errorMessage: "" };
     case "add_error":
       return { ...state, errorMessage: payload };
     default:
@@ -12,33 +16,29 @@ const authReducer = (state, action) => {
   }
 };
 
-const signup = (dispatch) => {
-  return async ({ email, password }) => {
-    try {
-      const res = await trackerApi.post("/signup", { email, password });
-      console.log(res.data);
-    } catch (err) {
-      dispatch({ type: "add_error", payload: "Something went wrong." });
-    }
-  };
+const signup = (dispatch) => async ({ email, password }) => {
+  try {
+    const res = await trackerApi.post("/signup", { email, password });
+    const { token } = res.data;
+    await AsyncStorage.setItem("token", token);
+    dispatch({ type: "signup", payload: { token } });
+  } catch (err) {
+    dispatch({ type: "add_error", payload: "Something went wrong." });
+  }
 };
 
-const signin = (dispatch) => {
-  return ({ email, password }) => {
-    // TODO try to sign in
-    // TODO handle success by updating state
-    // TODO handle error by showing error message (somehow)
-  };
+const signin = (dispatch) => async ({ email, password }) => {
+  // TODO try to sign in
+  // TODO handle success by updating state
+  // TODO handle error by showing error message (somehow)
 };
 
-const signout = (dispatch) => {
-  return () => {
-    // TODO just sign out
-  };
+const signout = (dispatch) => () => {
+  // TODO just sign out
 };
 
 export const { Context, Provider } = createDataContext(
   authReducer,
   { signin, signout, signup },
-  { isSignedIn: false, errorMessage: "" }
+  { token: null, errorMessage: "" }
 );
