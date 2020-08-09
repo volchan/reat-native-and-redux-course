@@ -2,61 +2,25 @@ import React, { useState, useContext } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Text, Input, Button } from "react-native-elements";
 
+import AuthForm from "../components/AuthForm";
 import Spacer from "../components/spacer";
 import { Context as AuthContext } from "../context/AuthContext";
 
 const SignupScreen = ({ navigation }) => {
   const { state, signup } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   return (
     <View style={styles.container}>
+      <AuthForm
+        headerText="Sign Up for Tracker"
+        errorMessage={state.errorMessage}
+        submitButtonText="Sign Up"
+        onSubmit={signup}
+      />
       <Spacer>
-        <Text style={{ textAlign: "center" }} h3>
-          Sign Up for Tracker
-        </Text>
-
-        <Spacer />
-
-        <Input
-          label="Email"
-          placeholder="email@address.com"
-          value={email}
-          onChangeText={setEmail}
-          autoCapitalize="none"
-          autoCorrect={false}
-          leftIcon={{
-            type: "font-awesome-5",
-            name: "envelope",
-            solid: true,
-            color: "#86939E",
-          }}
-        />
-        <Input
-          label="Password"
-          placeholder="Password"
-          value={password}
-          onChangeText={setPassword}
-          autoCapitalize="none"
-          autoCorrect={false}
-          secureTextEntry
-          leftIcon={{
-            type: "font-awesome-5",
-            name: "lock",
-            solid: true,
-            color: "#86939E",
-          }}
-        />
-        {state.errorMessage ? (
-          <Text style={styles.errorMessage}>{state.errorMessage}</Text>
-        ) : null}
-        <Button title="Sign Up" onPress={() => signup({ email, password })} />
-        <Spacer>
-          <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
-            <Text style={styles.link}>Already have an account? Sign In.</Text>
-          </TouchableOpacity>
-        </Spacer>
+        <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
+          <Text style={styles.link}>Already have an account? Sign In.</Text>
+        </TouchableOpacity>
       </Spacer>
     </View>
   );
@@ -82,7 +46,7 @@ const styles = StyleSheet.create({
   },
   link: {
     color: "blue",
-  }
+  },
 });
 
 export default SignupScreen;
