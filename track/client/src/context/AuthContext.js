@@ -24,7 +24,7 @@ const signup = (dispatch) => async ({ email, password }) => {
     const res = await trackerApi.post("/signup", { email, password });
     const { token } = res.data;
     await AsyncStorage.setItem("token", token);
-    dispatch({ type: "signin", payload: { token } });
+    dispatch({ type: "signin", payload: token });
     navigate("TrackList");
   } catch (err) {
     dispatch({ type: "add_error", payload: "Something went wrong." });
@@ -36,10 +36,20 @@ const signin = (dispatch) => async ({ email, password }) => {
     const res = await trackerApi.post("/signin", { email, password });
     const { token } = res.data;
     await AsyncStorage.setItem("token", token);
-    dispatch({ type: "signin", payload: { token } });
+    dispatch({ type: "signin", payload: token });
     navigate("TrackList");
   } catch (err) {
     dispatch({ type: "add_error", payload: err.response.data.error });
+  }
+};
+
+const tryAutoSignin = (dispatch) => async () => {
+  const token = AsyncStorage.getItem("token");
+  if (token) {
+    dispatch({ type: "signin", payload: token })
+    navigate("TrackList");
+  } else {
+    navigate("loginFlow");
   }
 };
 
@@ -53,6 +63,6 @@ const signout = (dispatch) => () => {
 
 export const { Context, Provider } = createDataContext(
   authReducer,
-  { signin, signout, signup, clearErrorMessage },
+  { signin, signout, signup, clearErrorMessage, tryAutoSignin },
   { token: null, errorMessage: "" }
 );

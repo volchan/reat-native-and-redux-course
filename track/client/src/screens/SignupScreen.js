@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavigationEvents } from "react-navigation";
 import { View, StyleSheet } from "react-native";
 
@@ -7,7 +7,14 @@ import NavLink from "../components/NavLink";
 import { Context as AuthContext } from "../context/AuthContext";
 
 const SignupScreen = () => {
-  const { state, signup, clearErrorMessage } = useContext(AuthContext);
+  const { state, signup, clearErrorMessage, tryAutoSignin } = useContext(
+    AuthContext
+  );
+
+  useEffect(() => {
+    tryAutoSignin();
+  }, []);
+
   return (
     <View style={styles.container}>
       <NavigationEvents onWillFocus={clearErrorMessage} />
