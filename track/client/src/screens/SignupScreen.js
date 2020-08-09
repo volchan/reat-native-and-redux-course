@@ -1,10 +1,8 @@
 import React, { useContext } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
-import { Text } from "react-native-elements";
 
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
-import Spacer from "../components/Spacer";
 import { Context as AuthContext } from "../context/AuthContext";
 
 const SignupScreen = () => {
@@ -36,13 +34,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-  },
-  errorMessage: {
-    textAlign: "center",
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "red",
-    marginBottom: 15,
   },
 });
 
