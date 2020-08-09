@@ -4,12 +4,13 @@ import { View, StyleSheet } from "react-native";
 
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
+import Container from "../components/Container";
 import { Context as AuthContext } from "../context/AuthContext";
 
 const SigninScreen = () => {
   const { state, signin, clearErrorMessage } = useContext(AuthContext);
   return (
-    <View style={styles.container}>
+    <Container style={styles.container}>
       <NavigationEvents onWillFocus={clearErrorMessage} />
       <AuthForm
         headerText="Sign In for Tracker"
@@ -22,7 +23,7 @@ const SigninScreen = () => {
         text="Don't have an account ? Sign Up instead!"
         style={{ marginHorizontal: 15 }}
       />
-    </View>
+    </Container>
   );
 };
 
@@ -31,8 +32,6 @@ SigninScreen.navigationOptions = () => {
     header: () => false,
   };
 };
-
-SigninScreen.onWill;
 
 const styles = StyleSheet.create({
   container: {

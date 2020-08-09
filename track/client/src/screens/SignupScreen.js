@@ -4,13 +4,14 @@ import { View, StyleSheet } from "react-native";
 
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
+import Container from "../components/Container";
 import { Context as AuthContext } from "../context/AuthContext";
 
 const SignupScreen = () => {
   const { state, signup, clearErrorMessage } = useContext(AuthContext);
 
   return (
-    <View style={styles.container}>
+    <Container style={styles.container}>
       <NavigationEvents onWillFocus={clearErrorMessage} />
       <AuthForm
         headerText="Sign Up for Tracker"
@@ -23,7 +24,7 @@ const SignupScreen = () => {
         text="Already have an account? Sign In instead!"
         style={{ marginHorizontal: 15 }}
       />
-    </View>
+    </Container>
   );
 };
 
