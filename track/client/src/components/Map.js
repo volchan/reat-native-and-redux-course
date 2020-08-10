@@ -5,6 +5,7 @@ import { Text, StyleSheet } from "react-native";
 import Spacer from "../components/Spacer";
 
 const Map = () => {
+
   let points = [];
   for (let i = 0; i < 20; i++) {
     if (i % 2 === 0) {
