@@ -1,14 +1,18 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { SafeAreaView } from "react-navigation";
 
 const Container = ({ children, style }) => {
-  return <View style={{...styles.container, ...style }}>{children}</View>;
+  return (
+    <SafeAreaView
+      forceInset={{ top: "always" }}
+      style={{ ...styles.container, ...style }}
+    >
+      {children}
+    </SafeAreaView>
+  );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    margin: 15,
-  },
-});
+const styles = StyleSheet.create({});
 
 export default Container;
