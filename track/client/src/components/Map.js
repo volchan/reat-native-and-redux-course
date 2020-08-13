@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import MapView, { Polyline } from "react-native-maps";
+import MapView, { Polyline, Circle } from "react-native-maps";
 import { Text, StyleSheet, ActivityIndicator } from "react-native";
 
 import Spacer from "../components/Spacer";
@@ -28,7 +28,14 @@ const Map = () => {
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         }}
-      />
+      >
+        <Circle
+          center={currentLocation.coords}
+          radius={15}
+          strokeColor="rgba(158, 158, 255, 1.0)"
+          fillColor="rgba(158, 158, 255, 0.3)"
+        />
+      </MapView>
       <Text>Latitude: {currentLocation.coords.latitude}</Text>
       <Text>Longitude: {currentLocation.coords.longitude}</Text>
     </Spacer>
