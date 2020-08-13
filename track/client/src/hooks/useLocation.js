@@ -10,7 +10,7 @@ export default (callback) => {
   const startWatching = async () => {
     try {
       const { granted } = await requestPermissionsAsync();
-      await watchPositionAsync(
+      const subscriber = await watchPositionAsync(
         {
           accuracy: Accuracy.BestForNavigation,
           timeInterval: 1000,
