@@ -11,7 +11,6 @@ const locationReducer = (state, action) => {
     case "add_current_location":
       return { ...state, currentLocation: payload };
     case "record_location":
-      console.log(payload);
       return { ...state, locations: [...state.locations, payload] };
     case "start_recording":
       return { ...state, recording: true };
@@ -29,7 +28,7 @@ const startRecording = (dispatch) => () =>
 const stopRecording = (dispatch) => () => dispatch({ type: "stop_recording" });
 const addLocation = (dispatch) => (location, recording) => {
   dispatch({ type: "add_current_location", payload: location });
-  if (recording) dispatch({ type: "record_location", location });
+  if (recording) dispatch({ type: "record_location", payload: location });
 };
 const changeName = (dispatch) => (name) =>
   dispatch({ type: "change_name", payload: name });

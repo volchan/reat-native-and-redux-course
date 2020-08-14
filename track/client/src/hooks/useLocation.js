@@ -33,11 +33,12 @@ export default (shouldTrack, callback) => {
   };
 
   useEffect(() => {
-    if (shouldTrack)  { 
-      startWatching();
-    } else {
-      subscriber.remove();
-      setSubscriber(null);
+    if (shouldTrack) startWatching();
+    return () => {
+      if (subscriber) {
+        subscriber.remove();
+        setSubscriber(null);
+      }
     }
   }, [shouldTrack, callback]);
 
