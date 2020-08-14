@@ -16,9 +16,9 @@ const TrackCreateScreen = ({ isFocused }) => {
     state: { recording },
     addLocation,
   } = useContext(LocationContext);
-  const [err] = useLocation(isFocused, (location) =>
-    addLocation(location, recording)
-  );
+  const [err] = useLocation(isFocused, (location) => {
+    addLocation(location, recording);
+  });
 
   return (
     <Container>

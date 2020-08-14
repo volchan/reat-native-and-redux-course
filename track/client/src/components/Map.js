@@ -7,7 +7,7 @@ import { Context as LocationContext } from "../context/LocationContext";
 
 const Map = () => {
   const {
-    state: { currentLocation },
+    state: { currentLocation, locations, recording },
   } = useContext(LocationContext);
 
   if (!currentLocation) {
@@ -38,6 +38,8 @@ const Map = () => {
       </MapView>
       <Text>Latitude: {currentLocation.coords.latitude}</Text>
       <Text>Longitude: {currentLocation.coords.longitude}</Text>
+      <Text>Recording: {recording.toString()}</Text>
+      <Text>Recorded locations: {locations.length}</Text>
     </Spacer>
   );
 };

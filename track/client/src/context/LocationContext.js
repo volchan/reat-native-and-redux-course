@@ -11,6 +11,7 @@ const locationReducer = (state, action) => {
     case "add_current_location":
       return { ...state, currentLocation: payload };
     case "record_location":
+      console.log(payload);
       return { ...state, locations: [...state.locations, payload] };
     case "start_recording":
       return { ...state, recording: true };
