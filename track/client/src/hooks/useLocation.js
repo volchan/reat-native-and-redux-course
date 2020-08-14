@@ -8,12 +8,13 @@ import { log } from "react-native-reanimated";
 
 export default (shouldTrack, callback) => {
   const [err, setErr] = useState(null);
-  const [subscriber, setSubscriber] = useState(null);
-  const startWatching = async () => {
-    try {
-      const { granted } = await requestPermissionsAsync();
-      setSubscriber(
-        await watchPositionAsync(
+
+  useEffect(() => {
+    let subscriber;
+    const startWatching = async () => {
+      try {
+        const { granted } = await requestPermissionsAsync();
+        subscriber = await watchPositionAsync(
           {
             accuracy: Accuracy.BestForNavigation,
             timeInterval: 1000,
@@ -22,24 +23,20 @@ export default (shouldTrack, callback) => {
           (location) => {
             callback(location);
           }
-        )
-      );
-      if (!granted) {
-        throw new Error("Location permission not granted");
+        );
+        if (!granted) {
+          throw new Error("Location permission not granted");
+        }
+      } catch (e) {
+        setErr(e);
       }
-    } catch (e) {
-      setErr(e);
-    }
-  };
+    };
 
-  useEffect(() => {
     if (shouldTrack) startWatching();
+
     return () => {
-      if (subscriber) {
-        subscriber.remove();
-        setSubscriber(null);
-      }
-    }
+      if (subscriber) subscriber.remove();
+    };
   }, [shouldTrack, callback]);
 
   return [err];
