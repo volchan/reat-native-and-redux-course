@@ -26,10 +26,7 @@ const TrackForm = () => {
         />
 
         {recording ? (
-          <Button
-            title="Stop Recording"
-            onPress={() => console.log("Stop Recording")}
-          />
+          <Button title="Stop Recording" onPress={stopRecording} />
         ) : (
           <Button title="Start Recording" onPress={startRecording} />
         )}
