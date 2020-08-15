@@ -11,13 +11,12 @@ const TrackListScreen = ({ navigation }) => {
   const { state: tracks, fetchTracks } = useContext(TrackContext);
 
   return (
-    <Container>
+    <>
       <NavigationEvents onWillFocus={fetchTracks} />
-      <Text style={styles.title}>TrackListScreen</Text>
-      <Spacer />
       <FlatList
         data={tracks}
         keyExtractor={(item) => item._id}
+        showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
@@ -28,21 +27,14 @@ const TrackListScreen = ({ navigation }) => {
           </TouchableOpacity>
         )}
       />
-    </Container>
+    </>
   );
 };
 
-TrackListScreen.navigationOptions = () => {
-  return {
-    header: () => false,
-  };
+TrackListScreen.navigationOptions = {
+  title: "Tracks"
 };
 
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 48,
-    textAlign: "center",
-  },
-});
+const styles = StyleSheet.create();
 
 export default TrackListScreen;

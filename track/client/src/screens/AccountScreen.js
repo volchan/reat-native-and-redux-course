@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { Button } from "react-native-elements";
+import { FontAwesome } from "@expo/vector-icons";
 
 import { Context as AuthContext } from "../context/AuthContext";
 import Spacer from "../components/Spacer";
@@ -17,6 +18,11 @@ const AccountScreen = () => {
       </Spacer>
     </Container>
   );
+};
+
+AccountScreen.navigationOptions = {
+  title: "Account",
+  tabBarIcon: <FontAwesome name="gear" size={24} color="black" />,
 };
 
 const styles = StyleSheet.create({});
