@@ -10,9 +10,10 @@ instance.interceptors.request.use(
     const token = await AsyncStorage.getItem("token");
     if (token) {
       config.headers = {
-        Autorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       };
     }
+    return config;
   },
   (err) => {
     return Promise.reject(err);
