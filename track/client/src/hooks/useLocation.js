@@ -4,7 +4,6 @@ import {
   requestPermissionsAsync,
   watchPositionAsync,
 } from "expo-location";
-import { log } from "react-native-reanimated";
 
 export default (shouldTrack, callback) => {
   const [err, setErr] = useState(null);

@@ -19,7 +19,7 @@ const TrackCreateScreen = ({ isFocused }) => {
   const callback = useCallback((location) => {
     addLocation(location, recording);
   }, [recording]);
-  const [err] = useLocation(isFocused, callback);
+  const [err] = useLocation(isFocused || recording, callback);
 
   return (
     <Container>
