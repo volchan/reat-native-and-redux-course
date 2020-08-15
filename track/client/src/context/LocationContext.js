@@ -1,8 +1,4 @@
-import AsyncStorage from "@react-native-community/async-storage";
-
 import createDataContext from "./createDataContext";
-import trackerApi from "../api/tracker";
-import { navigate } from "../navigationRef";
 
 const locationReducer = (state, action) => {
   const { type, payload } = action;
