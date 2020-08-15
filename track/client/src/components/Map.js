@@ -35,6 +35,7 @@ const Map = () => {
           strokeColor="rgba(158, 158, 255, 1.0)"
           fillColor="rgba(158, 158, 255, 0.3)"
         />
+        <Polyline coordinates={locations.map((loc) => loc.coords)} />
       </MapView>
       <Text>Latitude: {currentLocation.coords.latitude}</Text>
       <Text>Longitude: {currentLocation.coords.longitude}</Text>
