@@ -3,12 +3,26 @@ import {Text, TouchableOpacity} from 'react-native';
 
 const Button = () => {
   return (
-    <TouchableOpacity>
-      <Text>Click Me!!!!</Text>
+    <TouchableOpacity style={styles.button}>
+      <Text style={styles.text}>Click Me!!!!</Text>
     </TouchableOpacity>
   );
 };
 
-const styles = {};
+const styles = {
+  button: {
+    flex: 1,
+    alignSelf: 'stretch',
+    backgroundColor: '#007AFF',
+    borderRadius: 4,
+    paddingVertical: 10,
+  },
+  text: {
+    alignSelf: 'center',
+    color: '#FFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+};
 
 export default Button;
