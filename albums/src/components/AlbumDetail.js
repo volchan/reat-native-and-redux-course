@@ -1,11 +1,13 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
+
+import Card from './Card';
 
 const AlbumList = ({album}) => {
   return (
-    <View>
+    <Card>
       <Text>{album.title}</Text>
-    </View>
+    </Card>
   );
 };
 
