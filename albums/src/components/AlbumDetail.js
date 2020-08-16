@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, View, Image} from 'react-native';
 
 import Card from './Card';
 import CardSection from './CardSection';
@@ -8,12 +8,21 @@ const AlbumList = ({album}) => {
   return (
     <Card>
       <CardSection>
-        <Text>{album.title}</Text>
+        <View></View>
+        <View style={styles.header}>
+          <Text>{album.title}</Text>
+          <Text>{album.artist}</Text>
+        </View>
       </CardSection>
     </Card>
   );
 };
 
-const styles = {};
+const styles = {
+  header: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+  },
+};
 
 export default AlbumList;
