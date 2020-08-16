@@ -1,9 +1,20 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 
-const Header = () => <Text style={styles.text}>Albums!</Text>;
+const Header = () => {
+  const {text, view} = styles;
+
+  return (
+    <View style={view}>
+      <Text style={text}>Albums!</Text>
+    </View>
+  );
+};
 
 const styles = {
+  view: {
+    backgroundColor: 'red',
+  },
   text: {
     fontSize: 20,
   },
