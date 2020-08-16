@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
+import axios from 'axios';
 
 class AlbumList extends Component {
-  UNSAFE_componentWillMount() {
-    console.log('component album list will mount');
+  async UNSAFE_componentWillMount() {
+    const res = await axios.get(
+      'https://rallycoding.herokuapp.com/api/music_albums',
+    );
+    console.log(res.data);
   }
 
   render() {
