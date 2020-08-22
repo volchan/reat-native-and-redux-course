@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {Text, SafeAreaView} from 'react-native';
+
+import {Header} from './components/commons';
 
 class App extends Component {
   render() {
     return (
-      <View>
+      <SafeAreaView>
+        <Header title="Authentication" />
         <Text>Hello World!</Text>
-      </View>
+      </SafeAreaView>
     );
   }
 }
