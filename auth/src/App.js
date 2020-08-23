@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Text, SafeAreaView} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import firebase from 'firebase';
 
 import {Header} from './components/commons';
+import LoginForm from './components/LoginForm';
 
 class App extends Component {
   UNSAFE_componentWillMount() {
@@ -23,7 +24,7 @@ class App extends Component {
     return (
       <SafeAreaView>
         <Header title="Authentication" />
-        <Text>Hello World!</Text>
+        <LoginForm />
       </SafeAreaView>
     );
   }
