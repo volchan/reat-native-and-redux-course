@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Icon, TextInput} from 'react-native';
 
-import {Button, Card, CardSection} from './commons';
+import {Button, Card, CardSection, Input} from './commons';
 
 class LoginForm extends Component {
   state = {
@@ -15,17 +14,14 @@ class LoginForm extends Component {
     return (
       <Card>
         <CardSection>
-          <TextInput
-            style={styles.input}
+          <Input
             value={email}
             onChangeText={(newEmail) => this.setState({email: newEmail})}
           />
         </CardSection>
 
         <CardSection>
-          <TextInput
-            style={styles.input}
-            secureTextEntry
+          <Input
             value={password}
             onChangeText={(newPassword) =>
               this.setState({password: newPassword})
@@ -40,12 +36,5 @@ class LoginForm extends Component {
     );
   }
 }
-
-const styles = {
-  input: {
-    height: 20,
-    width: 100,
-  },
-};
 
 export default LoginForm;
