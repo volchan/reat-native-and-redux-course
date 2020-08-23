@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TextInput} from 'react-native';
+import {Icon, TextInput} from 'react-native';
 
 import {Button, Card, CardSection} from './commons';
 
@@ -10,19 +10,26 @@ class LoginForm extends Component {
   };
 
   render() {
+    const {email, password} = this.state;
+
     return (
       <Card>
         <CardSection>
           <TextInput
             style={styles.input}
-            onChangeText={(email) => this.setState({email})}
+            value={email}
+            onChangeText={(newEmail) => this.setState({email: newEmail})}
           />
         </CardSection>
 
         <CardSection>
           <TextInput
             style={styles.input}
-            onChangeText={(password) => this.setState({password})}
+            secureTextEntry
+            value={password}
+            onChangeText={(newPassword) =>
+              this.setState({password: newPassword})
+            }
           />
         </CardSection>
 
