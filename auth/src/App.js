@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import firebase from 'firebase';
 
-import {Header} from './components/commons';
+import {Button, Header, Spinner} from './components/commons';
 import LoginForm from './components/LoginForm';
 
 class App extends Component {
-  state = {loggedIn: false};
+  state = {loggedIn: null};
   UNSAFE_componentWillMount() {
     if (!firebase.apps.length) {
       firebase.initializeApp({
@@ -29,12 +29,23 @@ class App extends Component {
     }
   }
 
+  _renderContent() {
+    switch (this.state.loggedIn) {
+      case true:
+        return <Button>Log Out</Button>;
+      case false:
+        return <LoginForm />;
+      default:
+        return <Spinner size="large" />;
+    }
+  }
+
   render() {
     return (
       <SafeAreaView>
         <Header title="Authentication" />
-        <LoginForm />
-        <Text>{this.state.loggedIn ? 'true' : 'false'}</Text>
+
+        {this._renderContent()}
       </SafeAreaView>
     );
   }
