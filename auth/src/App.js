@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, Text} from 'react-native';
 import firebase from 'firebase';
 
 import {Header} from './components/commons';
 import LoginForm from './components/LoginForm';
 
 class App extends Component {
+  state = {loggedIn: false};
   UNSAFE_componentWillMount() {
     if (!firebase.apps.length) {
       firebase.initializeApp({
@@ -17,6 +18,14 @@ class App extends Component {
         messagingSenderId: '750804124671',
         appId: '1:750804124671:web:1ec1be30191422bb4a5dca',
       });
+
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          this.setState({loggedIn: true});
+        } else {
+          this.setState({loggedIn: false});
+        }
+      });
     }
   }
 
@@ -25,6 +34,7 @@ class App extends Component {
       <SafeAreaView>
         <Header title="Authentication" />
         <LoginForm />
+        <Text>{this.state.loggedIn ? 'true' : 'false'}</Text>
       </SafeAreaView>
     );
   }
