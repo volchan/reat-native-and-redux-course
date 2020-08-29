@@ -9,27 +9,38 @@ class LoginForm extends Component {
     email: '',
     password: '',
     error: '',
-    loading: true,
+    loading: false,
   };
 
-  async onButtonPress() {
+  _onLoginSuccess() {
+    this.setState({email: '', password: '', error: '', loading: false});
+  }
+
+  _onLoginFail() {
+    this.setState({error: 'Authentication Failed.', loading: false});
+  }
+
+  _onButtonPress() {
     const {email, password} = this.state;
     this.setState({error: '', loading: true});
     const auth = firebase.auth();
-    await auth.signInWithEmailAndPassword(email, password).catch(async () => {
-      await auth.createUserWithEmailAndPassword(email, password).catch(() => {
-        this.setState({error: 'Authentication Failed.'});
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(this._onLoginSuccess.bind(this))
+      .catch(() => {
+        auth
+          .createUserWithEmailAndPassword(email, password)
+          .then(this._onLoginSuccess.bind(this))
+          .catch(this._onLoginFail.bind(this));
       });
-    });
-    this.setState({loading: false});
   }
 
-  renderButton() {
+  _renderButton() {
     if (this.state.loading) {
       return <Spinner size="large" />;
     }
 
-    return <Button onPress={this.onButtonPress.bind(this)}>Log In</Button>;
+    return <Button onPress={this._onButtonPress.bind(this)}>Log In</Button>;
   }
 
   render() {
@@ -62,7 +73,7 @@ class LoginForm extends Component {
           <Text style={styles.errorText}>{this.state.error}</Text>
         ) : null}
 
-        <CardSection>{this.renderButton()}</CardSection>
+        <CardSection>{this._renderButton()}</CardSection>
       </Card>
     );
   }
