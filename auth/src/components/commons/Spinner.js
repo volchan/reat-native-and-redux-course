@@ -1,10 +1,14 @@
 import React from 'react';
-import {View, ActivityIndicator} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 
 const Spinner = ({size}) => {
   return (
     <View style={styles.spinner}>
-      <ActivityIndicator size={size || 'large'} />
+      <ActivityIndicator
+        size={size || 'large'}
+        style={styles.toto}
+        color="#007AFF"
+      />
     </View>
   );
 };
@@ -14,6 +18,7 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: 10,
   },
 };
 
