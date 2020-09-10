@@ -1,10 +1,19 @@
 import React, {Component} from 'react';
+import {Text} from 'react-native';
 import {connect} from 'react-redux';
 
 class LibraryList extends Component {
   render() {
-    return <></>;
+    return (
+      <>
+        {this.props.libraries.map((el) => (
+          <Text>{el.title}</Text>
+        ))}
+      </>
+    );
   }
 }
 
-export default connect()(LibraryList);
+const mapStateToProps = ({libraries}) => ({libraries});
+
+export default connect(mapStateToProps)(LibraryList);
