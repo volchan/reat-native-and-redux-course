@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
 
 import {CardSection} from './common/CardSection';
+import * as actions from '../actions';
 
 class ListItem extends Component {
   render() {
     const {titleStyle} = styles;
-
+    console.log(this.props);
     return (
       <CardSection>
         <Text style={titleStyle}>{this.props.library.title}</Text>
@@ -22,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListItem;
+export default connect(null, actions)(ListItem);
