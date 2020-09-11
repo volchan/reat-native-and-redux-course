@@ -13,7 +13,7 @@ class LibraryList extends Component {
     return (
       <FlatList
         data={this.props.libraries}
-        keyExtractor={(el) => el.id}
+        keyExtractor={(el) => el.id.toString()}
         showsVerticalScrollIndicator={false}
         renderItem={this._renderItem}
       />
