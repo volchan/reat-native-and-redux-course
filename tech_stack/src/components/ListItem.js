@@ -1,16 +1,30 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {
+  LayoutAnimation,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import {connect} from 'react-redux';
 
 import {CardSection} from './common/CardSection';
 import * as actions from '../actions';
 
 class ListItem extends Component {
+  UNSAFE_componentWillUpdate() {
+    LayoutAnimation.spring();
+  }
+
   _renderDescription() {
     const {library, expanded} = this.props;
 
     if (expanded) {
-      return <Text>{library.description}</Text>;
+      return (
+        <CardSection>
+          <Text style={styles.description}>{library.description}</Text>
+        </CardSection>
+      );
     }
   }
 
@@ -35,10 +49,8 @@ class ListItem extends Component {
 }
 
 const styles = StyleSheet.create({
-  titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15,
-  },
+  titleStyle: {fontSize: 18, paddingLeft: 15},
+  description: {flex: 1, paddingHorizontal: 20, paddingVertical: 10},
 });
 
 const mapStateToProps = (state, ownProps) => {
